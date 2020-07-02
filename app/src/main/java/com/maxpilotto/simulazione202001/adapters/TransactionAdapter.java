@@ -28,8 +28,10 @@ public class TransactionAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         int type = cursor.getInt(cursor.getColumnIndex(TransactionTable.COLUMN_TYPE));
         Date date = new Date(cursor.getLong(cursor.getColumnIndex(TransactionTable.COLUMN_DATE)));
+        String note = cursor.getString(cursor.getColumnIndex(TransactionTable.COLUMN_NOTE));
 
         ((TextView)view.findViewById(R.id.type)).setText(type == 0 ? "Noleggio" : "Restituzione");
         ((TextView)view.findViewById(R.id.date)).setText(new SimpleDateFormat("hh:mm dd/MM/yyyy").format(date));
+        ((TextView)view.findViewById(R.id.note)).setText(note);
     }
 }

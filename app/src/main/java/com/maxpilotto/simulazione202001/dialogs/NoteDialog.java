@@ -23,6 +23,8 @@ public class NoteDialog extends DialogFragment {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
+        params.leftMargin = 30;
+        params.rightMargin = 30;
 
         note.setLayoutParams(params);
 

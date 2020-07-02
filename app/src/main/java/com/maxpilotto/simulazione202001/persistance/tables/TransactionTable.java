@@ -14,6 +14,6 @@ public class TransactionTable implements BaseColumns {
             COLUMN_BOOK + " INTEGER," +
             COLUMN_TYPE + " INTEGER," +
             COLUMN_DATE + " INTEGER," +
-            COLUMN_NOTE + " INTEGER" +
+            COLUMN_NOTE + " TEXT" +
             ");";
 }

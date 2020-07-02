@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.maxpilotto.simulazione202001.R;
+import com.maxpilotto.simulazione202001.dialogs.NoteDialog;
 import com.maxpilotto.simulazione202001.persistance.BookProvider;
 import com.maxpilotto.simulazione202001.persistance.tables.BookTable;
 import com.maxpilotto.simulazione202001.persistance.tables.TransactionTable;
@@ -75,14 +76,14 @@ public class Mod01 extends AppCompatActivity {
             }
 
             ContentValues transaction = new ContentValues();
-            transaction.put(TransactionTable.COLUMN_BOOK,id);
-            transaction.put(TransactionTable.COLUMN_TYPE,0);
-            transaction.put(TransactionTable.COLUMN_DATE,System.currentTimeMillis());
+            transaction.put(TransactionTable.COLUMN_BOOK, id);
+            transaction.put(TransactionTable.COLUMN_TYPE, 0);
+            transaction.put(TransactionTable.COLUMN_DATE, System.currentTimeMillis());
 
             ContentValues book = new ContentValues();
             book.put(BookTable.COLUMN_RENTED, 1);
 
-            getContentResolver().insert(BookProvider.URI_TRANSACTIONS,transaction);
+            getContentResolver().insert(BookProvider.URI_TRANSACTIONS, transaction);
             getContentResolver().update(BookProvider.URI_BOOKS, book, BookTable._ID + "=" + id, null);
 
             finish();
@@ -96,22 +97,30 @@ public class Mod01 extends AppCompatActivity {
             }
 
             ContentValues transaction = new ContentValues();
-            transaction.put(TransactionTable.COLUMN_BOOK,id);
-            transaction.put(TransactionTable.COLUMN_TYPE,1);
-            transaction.put(TransactionTable.COLUMN_DATE,System.currentTimeMillis());
+            transaction.put(TransactionTable.COLUMN_BOOK, id);
+            transaction.put(TransactionTable.COLUMN_TYPE, 1);
+            transaction.put(TransactionTable.COLUMN_DATE, System.currentTimeMillis());
 
             ContentValues book = new ContentValues();
             book.put(BookTable.COLUMN_RENTED, 0);
 
-            getContentResolver().insert(BookProvider.URI_TRANSACTIONS,transaction);
-            getContentResolver().update(BookProvider.URI_BOOKS, book, BookTable._ID + "=" + id, null);
 
-            finish();
+
+            new NoteDialog()
+                    .setCallback(note -> {
+                        transaction.put(TransactionTable.COLUMN_NOTE, note);
+
+                        getContentResolver().insert(BookProvider.URI_TRANSACTIONS, transaction);
+                        getContentResolver().update(BookProvider.URI_BOOKS, book, BookTable._ID + "=" + id, null);
+
+                        finish();
+                    })
+                    .show(getSupportFragmentManager(), null);
         });
 
         historyBtn.setOnClickListener(v -> {
-            Intent i = new Intent(this,List02.class);
-            i.putExtra(List02.ID_EXTRA,id);
+            Intent i = new Intent(this, List02.class);
+            i.putExtra(List02.ID_EXTRA, id);
 
             startActivity(i);
         });
