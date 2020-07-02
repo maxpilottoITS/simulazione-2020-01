@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Simulazione2020_01</string>
+    <string name="booksInfo">Sono presenti %d libri di cui noleggiati %d</string>
+    <string name="insertBook">Inserisci libro</string>
+    <string name="bookList">Lista libri</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="save">Salva</string>
+    <string name="emptyField">I campi non possono essere vuoti</string>
+    <string name="history">Storico</string>
+    <string name="returnBook">Rientra</string>
+    <string name="rent">Noleggia</string>
+    <string name="edit">Modifica</string>
+    <string name="deleteBook">Eliminare libro?</string>
+    <string name="deleteBookMsg">Sei sicuro di voler eliminare il libro selezionato?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="errorRent">Libro già noleggiato</string>
+    <string name="errorReturn">Libro già ritornato</string>
+    <string name="noteTitle">Inserisci una nota</string>
+</resources>
